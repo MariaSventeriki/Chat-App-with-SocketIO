@@ -1,29 +1,107 @@
-body {
-    background-color: lightblue;
+body{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-main {
-    width: 88vw;
+main{
+    width: 80vw;
+    height: 60vh;
+    display: grid;
+    grid-template-columns: 200px auto;
 }
 
-main > * {
+#user-channel-list  {
+    height: 100%;
+    border: 1px solid red;
+    background-color: antiquewhite;
+    overflow: scroll;
+}
+
+#chat-view {
+    height: 100%;
+}
+
+#chat-view > * {
     width: 100%;
 }
 
-main > section > * {
+#chat-box {
+    height: 55vh;
+}
+
+#chat-view > section {
+    height: 5vh;
+}
+
+#chat-view > section > * {
     height: 30px;
     box-sizing: border-box;
+    margin: 0;
 }
-input{
-    padding: 5px;
-    margin-top: 10px;
-}
+
 #chat-box {
-    box-shadow: 5px 5px 15px 5px #150a47;
-    padding: 5px;
-    height: 100px;
+    border: 1px solid coral;
+}
+.user {
+    display: flex;
+    margin: 5px;
+}
+
+.user:hover {
+    background-color: white;
+}
+
+.nick {
+    width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.avatar {
+    height: 50px;
+    width: 50px;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+
+
+.btn {
+    border: 1px solid gray;
+    padding: 10px 15px;
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+.btn:hover {
+    background-color: rgb(199, 197, 197);
+    cursor: pointer;
+}
+
+.btn-blue {
+    background-color: lavender;
+}
+
+.btn-blue:hover {
+    background-color: cornflowerblue;
+}
+
+.list-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid cornflowerblue;
+}
+
+.list-item:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+ul > .active {
+    background-color: white!important;
 }
