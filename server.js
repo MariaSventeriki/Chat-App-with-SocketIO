@@ -10,8 +10,9 @@ const port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));
 
+const usersMap = {}
 const users = [];
-const channels = ['JS', 'React', 'Angular', 'Vue', 'NodeJS', 'C#', 'Java'];
+const channels = ['JS', 'React', 'Angular', 'Vue', 'NodeJS', 'C', 'Java'];
 
 io.on('connection', (socket) => {
 
@@ -28,6 +29,7 @@ io.on('connection', (socket) => {
             const ticket = {token, nickName};
             console.log(nickName + ' is joind to the chat');
             users.push(nickName);
+            usersMap[nickName] = socket;
             return ticket
         }
 
@@ -49,7 +51,9 @@ io.on('connection', (socket) => {
         } else {
             socket.emit('ticket', ticketHandler());
         }
+        //TODO: Check if the user is active
         io.emit('users', users);
+
     });
     
 
@@ -57,6 +61,8 @@ io.on('connection', (socket) => {
     socket.on('chat message', (envelope) => {
         if(envelope.user) {
             //message goes to user
+            socket.emit('chat msg', envelope)
+            usersMap[envelope.user].emit('chat msg', envelope)
         } else {
             //message goes to the channel
             io.emit('chat msg', envelope);
